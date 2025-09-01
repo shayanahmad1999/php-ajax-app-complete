@@ -1,5 +1,4 @@
 <?php
-const APP_NAME = "Deploy On Azure";
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
