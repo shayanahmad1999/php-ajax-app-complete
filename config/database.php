@@ -1,10 +1,11 @@
 <?php
-
+const APP_NAME = "Deploy On Azure";
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
-class Database {
+class Database
+{
     private $host;
     private $port;
     private $db_name;
@@ -12,7 +13,8 @@ class Database {
     private $password;
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         // Load environment variables
         $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
         $dotenv->load();
@@ -29,22 +31,22 @@ class Database {
             $this->username = $_ENV['DB_USER'];
             $this->password = $_ENV['DB_PASSWORD'];
         }
-        
+
         $this->port = $_ENV['DB_PORT'] ?? 5432;
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         $this->conn = null;
 
         try {
             $dsn = "pgsql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name;
             $this->conn = new PDO($dsn, $this->username, $this->password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $exception) {
+        } catch (PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();
         }
 
         return $this->conn;
     }
 }
-
