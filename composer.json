@@ -1,0 +1,20 @@
+{
+    "name": "user/php-ajax-app",
+    "description": "A PHP application with AJAX and PostgreSQL",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "vlucas/phpdotenv": "^5.4",
+        "ext-pdo": "*",
+        "ext-pgsql": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t public"
+    }
+}
+
